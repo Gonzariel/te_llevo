@@ -1,20 +1,18 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <mat-card>
+      <form class="example-form">
+        <mat-label id="inicio_sesion">Inicio Sesion</mat-label>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Usuario</mat-label>
+          <input matInput placeholder="usuario" value="" />
+        </mat-form-field>
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Contraseña</mat-label>
+          <input matInput placeholder="contraseña" value="" />
+        </mat-form-field>
+        <button mat-raised-button color="primary">Iniciar Sesion</button>
+      </form>
+    </mat-card>
   </div>
 </ion-content>
