@@ -11,6 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class RecuperarPage implements OnInit {
   recuperar: any = {
     Usuario: '',
+    Pass: '',
   };
 
   campoError: string = '';
