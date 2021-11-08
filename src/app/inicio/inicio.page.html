@@ -9,7 +9,7 @@
                 src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
               />
             </ion-avatar>
-            <ion-title>Usuario</ion-title>
+            <ion-title>{{this.usser}}</ion-title>
           </ion-chip>
         </ion-toolbar>
       </ion-header>
@@ -45,6 +45,9 @@
           </ion-item>
         </ion-toolbar>
       </ion-header>
+      <div id="container">
+        <ion-title>Bienvenido {{this.usser}} </ion-title>
+      </div>
       <ion-content>
         <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
           <ion-infinite-scroll-content
@@ -62,7 +65,7 @@
                     </ion-avatar>
                   </div>
                   <div>
-                    <h3>Nombre de Usuario</h3>
+                    <h3>Choffer</h3>
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3323.614581270851!2d-70.60193588479706!3d-33.58935498073438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9662d76a90c6bf59%3A0x45cc56db8e8d41dc!2sLos%20Nardos%202608%2C%20Puente%20Alto%2C%20Regi%C3%B3n%20Metropolitana!5e0!3m2!1ses-419!2scl!4v1633224399629!5m2!1ses-419!2scl"
                       style="border: 0"

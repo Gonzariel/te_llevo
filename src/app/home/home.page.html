@@ -5,14 +5,31 @@
         <mat-label id="inicio_sesion">Inicio Sesion</mat-label>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Usuario</mat-label>
-          <input matInput placeholder="usuario" value="" />
+          <input
+            matInput
+            placeholder="usuario"
+            type="text"
+            [(ngModel)]="usuario.usser"
+            name="usuario"
+          />
         </mat-form-field>
         <mat-form-field class="example-full-width" appearance="fill">
           <mat-label>Contraseña</mat-label>
-          <input matInput placeholder="contraseña" value="" />
+          <input
+            matInput
+            placeholder="contraseña"
+            type="password"
+            [(ngModel)]="usuario.pass"
+            name="pass"
+          />
         </mat-form-field>
-        <button mat-raised-button color="primary">Iniciar Sesion</button>
+        <button mat-raised-button color="primary" (click)="ingresar()">
+          Iniciar Sesion
+        </button>
       </form>
+      <!---<mat-label id="recuperar" >Recuperar Contraseña</mat-label>---->
+      <a href="http://localhost:8100/registro">Registrarse</a>
+      <a href="http://localhost:8100/recuperar">Recuperar Contraseña</a>
     </mat-card>
   </div>
 </ion-content>

@@ -8,7 +8,7 @@
       />
       <ion-card>
         <ion-card-header>
-          <ion-card-title>Ingresa tu usuario</ion-card-title>
+          <ion-card-title>Recuperar Contraseña</ion-card-title>
         </ion-card-header>
 
         <ion-card-content>
@@ -17,6 +17,11 @@
             placeholder="Usuario"
             type="text"
             [(ngModel)]="recuperar.Usuario"
+          ></ion-input>
+          <ion-input
+            placeholder="Nueva Contraseña"
+            type="password"
+            [(ngModel)]="recuperar.Pass"
           ></ion-input>
           <ion-button shape="block" (click)="presentAlert()"
             >Recuperar</ion-button

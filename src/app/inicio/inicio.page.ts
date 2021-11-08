@@ -1,17 +1,38 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
 })
-export class InicioPage implements OnInit {
 
-  constructor(public alertCtrl: AlertController) { }
+
+export class InicioPage implements OnInit {
+  usser: any;
+
+  constructor(public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
+    public toastController: ToastController) {
+    this.activateRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        let data = this.router.getCurrentNavigation().extras.state.usuario;
+        this.usser = data.usser;
+        console.log('bienvenido: ' + data.usser);
+      }
+  });
+   }
 
   ngOnInit() {
   }
+
+  //Inicio()
+  //{
+     //console.log('prueba')
+  //  this.router.navigate(['login'])
+  //}
+
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
@@ -27,7 +48,8 @@ export class InicioPage implements OnInit {
         }, {
           text: 'Si',
           handler: () => {
-            console.log('Confirm Okay');
+            this.router.navigate(['home']);
+            //console.log('Confirm Okay');
           }
         }
       ]
@@ -35,4 +57,6 @@ export class InicioPage implements OnInit {
 
     await alert.present();
   }
+
+
 }

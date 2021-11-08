@@ -11,6 +11,7 @@ import { AlertController } from '@ionic/angular';
 export class RecuperarPage implements OnInit {
   recuperar: any = {
     Usuario: '',
+    Pass: '',
   };
 
   campoError: string = '';
@@ -23,14 +24,14 @@ export class RecuperarPage implements OnInit {
 
   ngOnInit() { }
 
-  recuperarpass() {
-    if (this.validarModelo(this.recuperar)) {
-      this.mensajeToast('Enviado Correctamente');
-      this.router.navigate(['/home']);
-    } else {
-      this.mensajeToast('Falta:' + this.campoError);
-    }
-  }
+  //recuperarpass() {
+  //  if (this.validarModelo(this.recuperar)) {
+  //    this.mensajeToast('Enviado Correctamente');
+  //    this.router.navigate(['/home']);
+  //  } else {
+  //    this.mensajeToast('Falta:' + this.campoError);
+  //  }
+  //}
 
   validarModelo(model: any) {
     for (var [key, value] of Object.entries(model)) {
@@ -42,23 +43,24 @@ export class RecuperarPage implements OnInit {
     return true;
   }
 
-  async mensajeToast(message: string, duration?: number) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: duration ? duration : 2000,
-    });
+  //async mensajeToast(message: string, duration?: number) {
+  //  const toast = await this.toastController.create({
+  //    message: message,
+  //    duration: duration ? duration : 2000,
+  //  });
 
-    toast.present();
-  }
+  //  toast.present();
+  //}
 
   async presentAlert() {
     if (this.validarModelo(this.recuperar)) {
       const alert = await this.alertCtrl.create({
         cssClass: 'my-custom-class',
-        header: 'Se ha enviado correctamente',
+        header: 'La Solicitud Se ha enviado correctamente ',
         buttons: ['OK']
       });
       await alert.present();
+      this.router.navigate(['/home']);;
     } else {
       const alert = await this.alertCtrl.create({
         cssClass: 'my-custom-class',
@@ -68,4 +70,4 @@ export class RecuperarPage implements OnInit {
       await alert.present();
     }
   }
-}
+};
