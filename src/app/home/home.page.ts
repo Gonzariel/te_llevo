@@ -7,6 +7,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController} from '@ionic/angular';
+import {Storage} from '@capacitor/storage';
 
 
 @Component({
