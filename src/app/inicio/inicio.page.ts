@@ -3,6 +3,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import {Storage} from '@capacitor/storage';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -11,20 +12,19 @@ import { ToastController } from '@ionic/angular';
 
 
 export class InicioPage implements OnInit {
-  usser: any;
+ usuario='';
 
   constructor(public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
     public toastController: ToastController) {
-    this.activateRoute.queryParams.subscribe(params => {
-      if (this.router.getCurrentNavigation().extras.state) {
-        let data = this.router.getCurrentNavigation().extras.state.usuario;
-        this.usser = data.usser;
-        console.log('bienvenido: ' + data.usser);
-      }
-  });
-   }
+    
+  }
+   
 
   ngOnInit() {
+    Storage.get({key:"usuario"}).then((val)=>{
+      var objeto =JSON.parse(val.value)
+      this.usuario=objeto.usser
+  })
   }
 
   //Inicio()

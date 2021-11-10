@@ -22,8 +22,8 @@ export class HomePage implements OnInit {
   };
 
   campoError:string ="";
-
-
+  
+  
   constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController) {}
 
   ngOnInit(){
@@ -36,14 +36,10 @@ export class HomePage implements OnInit {
     if(this.validarModelo(this.usuario))
     {
       
-      
       if(this.usuario.usser == "Ariel" && this.usuario.pass =="1313"){
-        let navigationExtras: NavigationExtras = {
-          state: {
-           usuario: this.usuario
-          }};
-        console.log('usuario ' + this.usuario.usser + ' ' + this.usuario.pass);
-        this.router.navigate(['/inicio'],navigationExtras);
+        var infoJson =JSON.stringify(this.usuario);
+        Storage.set({key: 'usuario',value: infoJson});
+        this.router.navigate(['/inicio']);
       }
       else{
         this.mensajeToast(" Usuario o Contraseña Incorrecto");

@@ -10,11 +10,11 @@
         <ion-col>
           <ion-item>
             <ion-label position="floating">Nombre</ion-label>
-            <ion-input placeholder=""></ion-input>
+            <ion-input placeholder="" [(ngModel)]="registro.nombre" name="nombre"></ion-input>
           </ion-item>
           <ion-item
             ><ion-label position="floating">Apellido</ion-label>
-            <ion-input placeholder=""></ion-input>
+            <ion-input placeholder="" [(ngModel)]="registro.apellido" name="apellido"></ion-input>
           </ion-item>
           <ion-item
             ><ion-label position="floating">Correo</ion-label>
@@ -22,13 +22,15 @@
               placeholder=""
               type="email"
               required="required"
+              [(ngModel)]="registro.email"
+              name="email"
             ></ion-input>
           </ion-item>
           <ion-item
             ><ion-label position="floating">Contraseña</ion-label>
-            <ion-input placeholder=""></ion-input
+            <ion-input placeholder="" [(ngModel)]="registro.pass" name="pass"></ion-input
           ></ion-item>
-          <ion-button shape="block" (click)="presentAlert()"
+          <ion-button expand="block" (click)="ingresar()"
             >Registrarse</ion-button
           >
         </ion-col>
