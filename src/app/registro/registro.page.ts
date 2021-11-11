@@ -29,7 +29,7 @@ export class RegistroPage implements OnInit {
   {
     if(this.validarModelo(this.registro))
     {
-      if(this.registro.nombre =="" && this.registro.pass=="")
+  //    if(this.registro.nombre =="" && this.registro.apellido ==""&& this.registro.email =="" && this.registro.pass=="" )
         var infoJson =JSON.stringify(this.registro);
         Storage.set({key: 'registro',value: infoJson});
         this.router.navigate(['/home']);
@@ -45,6 +45,7 @@ export class RegistroPage implements OnInit {
   {
     for(var [key, value] of Object.entries(model))
     {
+  
       console.log(key+" value:"+value);
       if(value=="")
       {
@@ -62,12 +63,11 @@ export class RegistroPage implements OnInit {
       {
         message :message,
         duration: duration?duration:3000
-      }
+       }
     );
-
+  
     toast.present();
   }
-
 
 
 
