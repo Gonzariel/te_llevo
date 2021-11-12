@@ -64,7 +64,7 @@ export class RecuperarPage implements OnInit {
     } else {
       const alert = await this.alertCtrl.create({
         cssClass: 'my-custom-class',
-        header: 'Tiene que ingresar su usuario',
+        header: 'Tiene que ingresar su correo y contraseña',
         buttons: ['OK']
       });
       await alert.present();

@@ -43,6 +43,7 @@ export class HomePage implements OnInit {
         var infoJson =JSON.stringify(this.usuario);
         Storage.set({key: 'usuario',value: infoJson});
         this.router.navigate(['/inicio']);
+        this.mensajeToast("Bienvenido " + this.usuario.usser )
       }
       else{
         this.mensajeToast(" Usuario o Contraseña Incorrecto");
