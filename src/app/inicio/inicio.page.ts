@@ -16,9 +16,9 @@ export class InicioPage implements OnInit {
 
   constructor(public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
     public toastController: ToastController) {
-    
+
   }
-   
+
 
   ngOnInit() {
     Storage.get({key:"usuario"}).then((val)=>{

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController} from '@ionic/angular';
 import {Storage} from '@capacitor/storage';
-
+import {ApiService} from '../servicios/api.service';
 
 @Component({
   selector: 'app-home',
@@ -22,20 +22,23 @@ export class HomePage implements OnInit {
   };
 
   campoError:string ="";
-  
-  
-  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController) {}
+
+  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController,private api: ApiService) {}
 
   ngOnInit(){
 
   }
 
+  obtenerUsuarios() {
+    this.api.getUsuarios().subscribe((resultado) => {
+      console.log();
+    });
+  }
 
   ingresar()
   {
     if(this.validarModelo(this.usuario))
     {
-      
       if(this.usuario.usser == "Ariel" && this.usuario.pass =="1313"){
         var infoJson =JSON.stringify(this.usuario);
         Storage.set({key: 'usuario',value: infoJson});
@@ -44,7 +47,6 @@ export class HomePage implements OnInit {
       else{
         this.mensajeToast(" Usuario o Contraseña Incorrecto");
       }
-              
     }
 
   }
