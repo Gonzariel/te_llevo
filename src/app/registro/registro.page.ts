@@ -4,7 +4,7 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController} from '@ionic/angular';
-
+import {ApiService} from '../servicios/api.service';
 
 @Component({
   selector: 'app-registro',
@@ -21,7 +21,8 @@ export class RegistroPage implements OnInit {
 
   };
 
-  constructor(private api: ApiService, private router: Router, private activateRoute: ActivatedRoute) { }
+  constructor(private api: ApiService, private router: Router,
+    private activateRoute: ActivatedRoute, public toastController: ToastController) { }
 
   crearUsuario() {
     this.api.postCrearUsuario(this.registro).subscribe((res) => {
@@ -31,7 +32,6 @@ export class RegistroPage implements OnInit {
     return this.router.navigate(['home']);
   }
   campoError: string="";
-  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController) { }
 
   ngOnInit() {
   }
