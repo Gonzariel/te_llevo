@@ -23,7 +23,7 @@ export class HomePage implements OnInit {
 
   campoError:string ="";
 
-  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController,private api: ApiService) {}
+  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController,private api: ApiService) {Storage.remove({key:'logeado'});}
 
   ngOnInit(){
 
@@ -38,10 +38,11 @@ export class HomePage implements OnInit {
   ingresar()
   {
     if(this.validarModelo(this.usuario))
-    {
+    {       
       if(this.usuario.usser == "Ariel" && this.usuario.pass =="1313"){
         var infoJson =JSON.stringify(this.usuario);
-        Storage.set({key: 'usuario',value: infoJson});
+        Storage.set({key: 'usuario',value: infoJson});        
+        Storage.set({key: 'logeado',value: 'ok'});       
         this.router.navigate(['/inicio']);
         this.mensajeToast("Bienvenido " + this.usuario.usser )
       }
