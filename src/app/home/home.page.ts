@@ -41,9 +41,11 @@ export class HomePage implements OnInit {
     var login = { correo: this.usuario.usser, password: this.usuario.pass ,token_equipo: 1000300130};
     this.api.postLogin(login).subscribe((resultado) => {
       console.log(resultado);
-     
-      if (resultado==false) {
-        
+      var result = JSON.stringify(resultado);
+      var respuesta = JSON.parse(result);
+      console.log(result);
+      if (respuesta.result==='Login incorrecto') {
+        this.mensajeToast('Contraseña Modificada');
       } else {
         var infoJson =JSON.stringify(this.usuario);
         Storage.set({key: 'usuario',value: infoJson});

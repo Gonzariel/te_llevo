@@ -50,16 +50,15 @@ export class RegistroPage implements OnInit {
     }
     else{
       this.mensajeToast("Porfavor llenar todos los campos");
-    }  
+    }
   }
 
- 
 
   validarModelo(model: any)
   {
     for(var [key, value] of Object.entries(model))
     {
-  
+
       console.log(key+" value:"+value);
       if(value=="")
       {
