@@ -15,15 +15,17 @@
           <ion-label position="floating"></ion-label>
           <ion-input
             placeholder="Correo Electronico"
-            type="Email"
-            [(ngModel)]="recuperar.Email"
+            type="text"
+            [(ngModel)]="recuperar.email"
+            name="email"
           ></ion-input>
           <ion-input
             placeholder="Nueva Contraseña"
             type="password"
-            [(ngModel)]="recuperar.Pass"
+            [(ngModel)]="recuperar.pass"
+            name="pass"
           ></ion-input>
-          <ion-button shape="block" (click)="presentAlert()"
+          <ion-button shape="block" (click)="cambiarContrasena()"
             >Recuperar</ion-button
           >
         </ion-card-content>

@@ -20,7 +20,7 @@ const routes: Routes = [
   {
     path: 'recuperar',
     loadChildren: () => import('./recuperar/recuperar.module').then( m => m.RecuperarPageModule),
-    canActivate: [RutaProtegidaGuard]
+    //canActivate: [RutaProtegidaGuard]
   },
   {
     path: 'registro',

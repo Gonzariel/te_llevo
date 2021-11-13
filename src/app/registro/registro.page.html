@@ -14,6 +14,7 @@
               placeholder=""
               [(ngModel)]="registro.nombre"
               name="nombre"
+              required
             ></ion-input>
           </ion-item>
           <ion-item
@@ -22,6 +23,7 @@
               placeholder=""
               [(ngModel)]="registro.apellido"
               name="apellido"
+              required
             ></ion-input>
           </ion-item>
           <ion-item
@@ -31,6 +33,7 @@
               type="email"
               [(ngModel)]="registro.email"
               name="email"
+              required
             ></ion-input>
           </ion-item>
           <ion-item
@@ -39,9 +42,10 @@
               placeholder=""
               [(ngModel)]="registro.pass"
               name="pass"
+              required
             ></ion-input
           ></ion-item>
-          <ion-button expand="block" (click)="ingreso()"
+          <ion-button expand="block" (click)="crearUsuario()"
             >Registrarse</ion-button
           >
         </ion-col>

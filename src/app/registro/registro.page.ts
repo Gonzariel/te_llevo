@@ -25,11 +25,14 @@ export class RegistroPage implements OnInit {
     private activateRoute: ActivatedRoute, public toastController: ToastController) { }
 
   crearUsuario() {
-    this.api.postCrearUsuario(this.registro).subscribe((res) => {
+    var registro = {
+      nombre: this.registro.nombre, apellidos: this.registro.apellido,
+      correo: this.registro.email, password: this.registro.pass, token_equipo: 1000300130
+    };
+    this.api.postCrearUsuario(registro).subscribe((res) => {
       console.log(res);
-
+      return this.router.navigate(['home']);
     });
-    return this.router.navigate(['home']);
   }
   campoError: string="";
 

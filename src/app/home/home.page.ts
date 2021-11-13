@@ -31,29 +31,31 @@ export class HomePage implements OnInit {
 
   obtenerUsuarios() {
     this.api.getUsuarios().subscribe((resultado) => {
-      console.log();
+      console.log(resultado);
     });
   }
 
-  ingresar()
-  {
-    if(this.validarModelo(this.usuario))
-    {       
-      if(this.usuario.usser == "Ariel" && this.usuario.pass =="1313"){
+
+
+  loginUsuarios() {
+    var login = { correo: this.usuario.usser, password: this.usuario.pass ,token_equipo: 1000300130};
+    this.api.postLogin(login).subscribe((resultado) => {
+      console.log(resultado);
+     
+      if (resultado==false) {
+        
+      } else {
         var infoJson =JSON.stringify(this.usuario);
-        Storage.set({key: 'usuario',value: infoJson});        
-        Storage.set({key: 'logeado',value: 'ok'});       
+        Storage.set({key: 'usuario',value: infoJson});
+        Storage.set({ key: 'logeado', value: 'ok' });
+        console.log();
         this.router.navigate(['/inicio']);
-        this.mensajeToast("Bienvenido " + this.usuario.usser )
+        this.mensajeToast('Bienvenido ' + this.usuario.correo);
       }
-      else{
-        this.mensajeToast(" Usuario o Contraseña Incorrecto");
-      }
-    }
+    });
+ }
 
-  }
-
-  validarModelo(model:any)
+  validarModelo(model: any)
   {
     for(var [key, value] of Object.entries(model))
     {

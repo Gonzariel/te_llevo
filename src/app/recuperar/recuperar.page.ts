@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import {ApiService} from '../servicios/api.service';
 @Component({
   selector: 'app-recuperar',
   templateUrl: './recuperar.page.html',
@@ -10,8 +10,8 @@ import { AlertController } from '@ionic/angular';
 })
 export class RecuperarPage implements OnInit {
   recuperar: any = {
-    Usuario: '',
-    Pass: '',
+    email: '',
+    pass: '',
   };
 
   campoError: string = '';
@@ -19,8 +19,16 @@ export class RecuperarPage implements OnInit {
   constructor(
     public toastController: ToastController,
     private router: Router,
-    public alertCtrl: AlertController,
+    public alertCtrl: AlertController,private api: ApiService
   ) { }
+
+  cambiarContrasena() {
+    var contrasena = {correo:this.recuperar.email,password:this.recuperar.pass, token_equipo: 1000300130};
+    this.api.postRecuperar(contrasena).subscribe((res) => {
+      console.log(res);
+      return this.router.navigate(['home']);
+    });
+  }
 
   ngOnInit() { }
 

@@ -4,10 +4,10 @@
       <form class="example-form">
         <mat-label id="inicio_sesion">Inicio Sesion</mat-label>
         <mat-form-field class="example-full-width" appearance="fill">
-          <mat-label>Usuario</mat-label>
+          <mat-label>Correo</mat-label>
           <input
             matInput
-            placeholder="usuario"
+            placeholder="correo"
             type="text"
             [(ngModel)]="usuario.usser"
             name="usuario"
@@ -23,7 +23,7 @@
             name="pass"
           />
         </mat-form-field>
-        <button mat-raised-button color="primary" (click)="ingresar()">
+        <button mat-raised-button color="primary" (click)="loginUsuarios()">
           Iniciar Sesion
         </button>
       </form>

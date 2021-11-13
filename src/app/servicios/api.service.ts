@@ -17,6 +17,15 @@ getUsuarios(): Observable<any> {
 }
 
 postCrearUsuario(registro) {
-  return this.http.post(this.apiBase+'crearUsuario',{registro}).pipe();
+  return this.http.post(this.apiBase + 'crearUsuario', registro).pipe();
+}
+
+postLogin(login){
+  return this.http.post(this.apiBase + 'loginUsuario', login).pipe();
+}
+
+postRecuperar(contrasena) {
+  return this.http.post(this.apiBase + 'modificarPassword', contrasena).pipe();
 }
 }
+
