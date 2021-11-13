@@ -18,12 +18,14 @@
             type="text"
             [(ngModel)]="recuperar.email"
             name="email"
+            required
           ></ion-input>
           <ion-input
             placeholder="Nueva Contraseña"
             type="password"
             [(ngModel)]="recuperar.pass"
             name="pass"
+            required
           ></ion-input>
           <ion-button shape="block" (click)="cambiarContrasena()"
             >Recuperar</ion-button

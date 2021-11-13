@@ -23,14 +23,14 @@ export class RecuperarPage implements OnInit {
   ) { }
 
   cambiarContrasena() {
-    var contrasena = {correo:this.recuperar.email,nueva_password:this.recuperar.pass, token_equipo: 1000300130};
-    this.api.postRecuperar(contrasena).subscribe((res) => {
-      console.log(res);
-      var result = JSON.stringify(res);
-      var respuesta = JSON.parse(result);
-      this.mensajeToast(respuesta.result);
-      return this.router.navigate(['home']);
-    });
+    if (this.validarModelo(this.recuperar)) {
+      var contrasena = { correo: this.recuperar.email, nueva_password: this.recuperar.pass, token_equipo: 1000300130 };
+      this.api.postRecuperar(contrasena).subscribe((res) => {
+        console.log(res);
+        this.mensajeToast('Contraseña Modificada');
+        return this.router.navigate(['home']);
+      });
+    }
   }
 
   ngOnInit() { }
