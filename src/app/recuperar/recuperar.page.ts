@@ -13,7 +13,9 @@ export class RecuperarPage implements OnInit {
     email: '',
     pass: '',
   };
-
+  token: any = {
+    token: '1000300130',
+  };
   campoError: string = '';
 
   constructor(
@@ -24,7 +26,7 @@ export class RecuperarPage implements OnInit {
 
   cambiarContrasena() {
     if (this.validarModelo(this.recuperar)) {
-      var contrasena = { correo: this.recuperar.email, nueva_password: this.recuperar.pass, token_equipo: 1000300130 };
+      var contrasena = { correo: this.recuperar.email, nueva_password: this.recuperar.pass, token_equipo:this.token.token };
       this.api.postRecuperar(contrasena).subscribe((res) => {
         console.log(res);
         this.mensajeToast('Contraseña Modificada');

@@ -16,15 +16,21 @@ export class InicioPage implements OnInit {
 
   constructor(public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
     public toastController: ToastController) {
-
+    this.activateRoute.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        let data = this.router.getCurrentNavigation().extras.state.usuario;
+        this.usuario = data.usser;
+        console.log('bienvenido: ' + data.usser);
+      }
+  });
   }
 
 
   ngOnInit() {
-    Storage.get({key:"usuario"}).then((val)=>{
-      var objeto =JSON.parse(val.value)
-      this.usuario=objeto.usser
-  })
+    Storage.get({ key: "usuario" }).then((val) => {
+      var objeto = JSON.parse(val.value)
+      this.usuario = objeto.usser;
+    });
   }
 
   //Inicio()

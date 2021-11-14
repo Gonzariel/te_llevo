@@ -20,6 +20,9 @@ export class RegistroPage implements OnInit {
     pass: '',
 
   };
+  token: any = {
+    token: '1000300130',
+  };
 
   constructor(private api: ApiService, private router: Router,
     private activateRoute: ActivatedRoute, public toastController: ToastController) { }
@@ -28,7 +31,7 @@ export class RegistroPage implements OnInit {
     if (this.validarModelo(this.registro)) {
       var registro = {
         nombre: this.registro.nombre, apellidos: this.registro.apellido,
-        correo: this.registro.email, password: this.registro.pass, token_equipo: 1000300130
+        correo: this.registro.email, password: this.registro.pass, token_equipo: this.token.token
       };
       this.api.postCrearUsuario(registro).subscribe((res) => {
         console.log(res);

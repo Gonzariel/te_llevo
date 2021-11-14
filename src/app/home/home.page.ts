@@ -20,10 +20,13 @@ export class HomePage implements OnInit {
     usser: '',
     pass:''
   };
+  token: any = {
+    token: '1000300130',
+  };
 
   campoError:string ="";
 
-  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController,private api: ApiService) {Storage.remove({key:'logeado'});}
+  constructor(public alertCtrl: AlertController,private router: Router,public toastController: ToastController,private api: ApiService,) {Storage.remove({key:'logeado'});}
 
   ngOnInit(){
 
@@ -37,7 +40,7 @@ export class HomePage implements OnInit {
 
   loginUsuarios() {
     if (this.validarModelo(this.usuario)) {
-      var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo: 1000300130 };
+      var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo:this.token.token};
       this.api.postLogin(login).subscribe((resultado) => {
         var result = JSON.stringify(resultado);
         var respuesta = JSON.parse(result);
@@ -45,10 +48,16 @@ export class HomePage implements OnInit {
         if (respuesta.result === 'Login incorrecto') {
           this.mensajeToast('Usuario o contraseña incorrecto');
         } else {
+          let navigationExtras: NavigationExtras = {
+            state: {
+            usuario: this.usuario
+          }};
           var infoJson = JSON.stringify(this.usuario);
-          Storage.set({ key: 'usuario', value: infoJson });
+          var infoToken = JSON.stringify(this.token);
+          Storage.set({ key: 'usuario', value: infoToken });
+          Storage.set({key: 'token',value: infoJson});
           Storage.set({ key: 'logeado', value: 'ok' });
-          this.router.navigate(['/inicio']);
+          this.router.navigate(['/inicio'],navigationExtras);
           this.mensajeToast('Bienvenido '+this.usuario.usser );
         }
       });
