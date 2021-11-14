@@ -39,7 +39,6 @@ export class HomePage implements OnInit {
     if (this.validarModelo(this.usuario)) {
       var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo: 1000300130 };
       this.api.postLogin(login).subscribe((resultado) => {
-        console.log(resultado);
         var result = JSON.stringify(resultado);
         var respuesta = JSON.parse(result);
         console.log(result);
@@ -49,9 +48,8 @@ export class HomePage implements OnInit {
           var infoJson = JSON.stringify(this.usuario);
           Storage.set({ key: 'usuario', value: infoJson });
           Storage.set({ key: 'logeado', value: 'ok' });
-          console.log();
           this.router.navigate(['/inicio']);
-          this.mensajeToast('Bienvenido ' + this.usuario.correo);
+          this.mensajeToast('Bienvenido '+this.usuario.usser );
         }
       });
     } else {
@@ -85,7 +83,4 @@ export class HomePage implements OnInit {
     toast.present();
   }
 
-
-
- 
 }
