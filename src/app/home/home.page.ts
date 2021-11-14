@@ -35,8 +35,6 @@ export class HomePage implements OnInit {
     });
   }
 
-
-
   loginUsuarios() {
     if (this.validarModelo(this.usuario)) {
       var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo: 1000300130 };
@@ -46,7 +44,7 @@ export class HomePage implements OnInit {
         var respuesta = JSON.parse(result);
         console.log(result);
         if (respuesta.result === 'Login incorrecto') {
-          this.mensajeToast('Contraseña Modificada');
+          this.mensajeToast('Usuario o contraseña incorrecto');
         } else {
           var infoJson = JSON.stringify(this.usuario);
           Storage.set({ key: 'usuario', value: infoJson });
@@ -56,6 +54,8 @@ export class HomePage implements OnInit {
           this.mensajeToast('Bienvenido ' + this.usuario.correo);
         }
       });
+    } else {
+      this.mensajeToast("Debe ingresar todos los campos");
     }
  }
 

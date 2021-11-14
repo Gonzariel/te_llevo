@@ -30,6 +30,8 @@ export class RecuperarPage implements OnInit {
         this.mensajeToast('Contraseña Modificada');
         return this.router.navigate(['home']);
       });
+    } else {
+      this.mensajeToast("Debe ingresar todos los campos");
     }
   }
 
@@ -62,25 +64,6 @@ export class RecuperarPage implements OnInit {
 
   //  toast.present();
   //}
-
-  async presentAlert() {
-    if (this.validarModelo(this.recuperar)) {
-      const alert = await this.alertCtrl.create({
-        cssClass: 'my-custom-class',
-        header: 'La Solicitud Se ha enviado correctamente ',
-        buttons: ['OK']
-      });
-      await alert.present();
-      this.router.navigate(['/home']);;
-    } else {
-      const alert = await this.alertCtrl.create({
-        cssClass: 'my-custom-class',
-        header: 'Tiene que ingresar su correo y contraseña',
-        buttons: ['OK']
-      });
-      await alert.present();
-    }
-  }
 
   async mensajeToast(message:string, duration?:number)
   {

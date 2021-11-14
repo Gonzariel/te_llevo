@@ -39,27 +39,14 @@ export class RegistroPage implements OnInit {
         this.mensajeToast(respuesta.result);
         return this.router.navigate(['home']);
       });
+    } else {
+      this.mensajeToast("Porfavor llenar todos los campos");
     }
   }
   campoError: string="";
 
   ngOnInit() {
   }
-
-  ingreso()
-  {
-    if(this.validarModelo(this.registro))
-    {
-  //    if(this.registro.nombre =="" && this.registro.apellido ==""&& this.registro.email =="" && this.registro.pass=="" )
-        var infoJson =JSON.stringify(this.registro);
-        Storage.set({key: 'registro',value: infoJson});
-        this.router.navigate(['/home']);
-    }
-    else{
-      this.mensajeToast("Porfavor llenar todos los campos");
-    }
-  }
-
 
   validarModelo(model: any)
   {
@@ -85,7 +72,7 @@ export class RegistroPage implements OnInit {
         duration: duration?duration:3000
        }
     );
-  
+
     toast.present();
   }
 
