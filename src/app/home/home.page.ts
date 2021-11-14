@@ -18,7 +18,8 @@ import {ApiService} from '../servicios/api.service';
 export class HomePage implements OnInit {
   usuario: any = {
     usser: '',
-    pass:''
+    pass: '',
+    token:'1000300130'
   };
 
   campoError:string ="";
@@ -37,7 +38,7 @@ export class HomePage implements OnInit {
 
   loginUsuarios() {
     if (this.validarModelo(this.usuario)) {
-      var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo: 1000300130 };
+      var login = { correo: this.usuario.usser, password: this.usuario.pass, token_equipo: this.usuario.token};
       this.api.postLogin(login).subscribe((resultado) => {
         var result = JSON.stringify(resultado);
         var respuesta = JSON.parse(result);

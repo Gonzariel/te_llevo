@@ -49,7 +49,7 @@ export class InicioPage implements OnInit {
           text: 'Si',
           handler: () => {
             Storage.remove({key:'usuario'});
-            Storage.remove({key:'logeado'});            
+            Storage.remove({key:'logeado'});
             this.router.navigate(['home']);
             //console.log('Confirm Okay');
           }
