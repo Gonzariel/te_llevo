@@ -16,6 +16,7 @@ import {ApiService} from '../servicios/api.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
+  rol = false;
   usuario: any = {
     usser: '',
     pass: '',
@@ -46,11 +47,19 @@ export class HomePage implements OnInit {
         if (respuesta.result === 'Login incorrecto') {
           this.mensajeToast('Usuario o contraseña incorrecto');
         } else {
-          var infoJson = JSON.stringify(this.usuario);
-          Storage.set({ key: 'usuario', value: infoJson });
-          Storage.set({ key: 'logeado', value: 'ok' });
-          this.router.navigate(['/inicio']);
-          this.mensajeToast('Bienvenido '+this.usuario.usser );
+          if(this.rol = !this.rol){
+            var infoJson = JSON.stringify(this.usuario);
+            Storage.set({ key: 'usuario', value: infoJson });
+            Storage.set({ key: 'logeado', value: 'ok' });
+            this.router.navigate(['/inicio']);
+            this.mensajeToast('Bienvenido ' + this.usuario.usser);
+          }else {
+            var infoJson = JSON.stringify(this.usuario);
+            Storage.set({ key: 'usuario', value: infoJson });
+            Storage.set({ key: 'logeado', value: 'ok' });
+            this.router.navigate(['/inicio-chofer']);
+            this.mensajeToast('Bienvenido ' + this.usuario.usser);
+          }
         }
       });
     } else {
