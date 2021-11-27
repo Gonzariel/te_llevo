@@ -9,6 +9,7 @@ import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController} from '@ionic/angular';
 import {Storage} from '@capacitor/storage';
 import {ApiService} from '../servicios/api.service';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-home',
@@ -66,7 +67,9 @@ export class HomePage implements OnInit {
       this.mensajeToast("Debe ingresar todos los campos");
     }
  }
-
+  toggleChanged() {
+   console.log(this.rol)
+ }
   validarModelo(model: any)
   {
     for(var [key, value] of Object.entries(model))
