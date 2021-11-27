@@ -27,5 +27,13 @@ postLogin(login){
 postRecuperar(contrasena) {
   return this.http.post(this.apiBase + 'modificarPassword', contrasena).pipe();
 }
+  
+postCrearviaje(crearviaje) {
+  return this.http.post(this.apiBase + 'crearViaje', crearviaje).pipe();
+}
+
+getObtenerViajes(): Observable<any> {
+  return this.http.get(this.apiBase + 'obtenerViajes/1000300130').pipe();
+}
 }
 

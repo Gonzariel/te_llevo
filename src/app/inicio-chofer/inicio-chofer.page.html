@@ -37,18 +37,48 @@
           <ion-buttons slot="start">
             <ion-menu-button></ion-menu-button>
           </ion-buttons>
-          <ion-item class="buscar">
-            <ion-searchbar
-              animated
-              placeholder="Ingrese su direccion"
-            ></ion-searchbar>
-          </ion-item>
+          <ion-title>Crear Viaje</ion-title>
         </ion-toolbar>
       </ion-header>
-      <!--- <div id="container">
-        <ion-title>Bienvenido {{this.usuario}} </ion-title>
-      </div>--->
-      <ion-content> </ion-content>
+      <ion-content>
+        <form>
+          <ion-row>
+            <ion-col>
+              <ion-item>
+                <ion-label position="floating">Horario Salida</ion-label>
+                <ion-input
+                  placeholder=""
+                  [(ngModel)]="viaje.horario"
+                  name="horario"
+                  required
+                ></ion-input>
+              </ion-item>
+              <ion-item
+                ><ion-label position="floating">Costo por persona</ion-label>
+                <ion-input
+                  placeholder=""
+                  [(ngModel)]="viaje.costo"
+                  name="costo"
+                  required
+                ></ion-input>
+              </ion-item>
+              <ion-item
+                ><ion-label position="floating">Lugar de Destino</ion-label>
+                <ion-input
+                  placeholder=""
+                  type="email"
+                  [(ngModel)]="viaje.destino"
+                  name="destino"
+                  required
+                ></ion-input>
+              </ion-item>
+              <ion-button type="reset" expand="block" (click)="crearViaje()"
+                >Crear Viaje</ion-button
+              >
+            </ion-col>
+          </ion-row>
+        </form>
+      </ion-content>
     </div>
   </ion-app>
 </ion-content>

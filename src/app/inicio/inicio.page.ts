@@ -3,7 +3,9 @@ import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { ToastController } from '@ionic/angular';
-import {Storage} from '@capacitor/storage';
+import { Storage } from '@capacitor/storage';
+import { ApiService } from '../servicios/api.service';
+import { HttpClient } from '@angular/common/http';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
@@ -12,10 +14,13 @@ import {Storage} from '@capacitor/storage';
 
 
 export class InicioPage implements OnInit {
- usuario='';
+  viajes: any = [];
+  usuario: '';
+  public info: any;
+  public nuevo: any;
 
-  constructor(public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
-    public toastController: ToastController) {
+  constructor(private api: ApiService,public alertCtrl: AlertController, private router: Router, private activateRoute: ActivatedRoute,
+    public toastController: ToastController,private http: HttpClient) {
 
   }
 
@@ -25,6 +30,11 @@ export class InicioPage implements OnInit {
       var objeto = JSON.parse(val.value)
       this.usuario = objeto.usser;
     });
+
+    this.api.getObtenerViajes().subscribe((result) => {
+      console.log("result",result);
+      return this.viajes = result;
+    });
   }
 
   //Inicio()
@@ -32,7 +42,6 @@ export class InicioPage implements OnInit {
      //console.log('prueba')
   //  this.router.navigate(['login'])
   //}
-
   async presentAlertConfirm() {
     const alert = await this.alertCtrl.create({
       cssClass: 'my-custom-class',
