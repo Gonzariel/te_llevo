@@ -27,7 +27,11 @@
         </mat-form-field>
         <mat-list-item role="listitem">
           <ion-icon name="car-sport-outline"></ion-icon>
-          <ion-toggle checked (ionChange)="toggleChanged($event)"></ion-toggle>
+          <ion-toggle
+            (ionChange)="change()"
+            [(ngModel)]="rol"
+            name="rol"
+          ></ion-toggle>
           <ion-icon name="accessibility-outline"></ion-icon>
         </mat-list-item>
 

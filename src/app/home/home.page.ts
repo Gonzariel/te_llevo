@@ -17,11 +17,11 @@ import { ApiService } from '../servicios/api.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit {
-  rol = false;
+  public rol:boolean = true;
   usuario: any = {
     usser: '',
     pass: '',
-    token:'1000300130'
+    token: '1000300130',
   };
 
   campoError:string ="";
@@ -49,20 +49,20 @@ export class HomePage implements OnInit {
         if (respuesta.result === 'Login incorrecto') {
           this.mensajeToast('Usuario o contraseña incorrecto');
         } else {
-          if (this.rol = !this.rol) {
+          if (this.rol == false) {
         
             var infoJson = JSON.stringify(this.usuario);
             Storage.set({ key: 'usuario', value: infoJson });
             Storage.set({ key: 'logeado', value: 'ok' });
             Storage.set({ key: 'datos', value: JSON.stringify(respuesta.result[0]) });
-            this.router.navigate(['/inicio']);
+            this.router.navigate(['/inicio-chofer']);
             
           }else {
             var infoJson = JSON.stringify(this.usuario);
             Storage.set({ key: 'usuario', value: infoJson });
             Storage.set({ key: 'logeado', value: 'ok' });
             Storage.set({ key: 'datos', value: JSON.stringify(respuesta.result[0]) });
-            this.router.navigate(['/inicio-chofer']);
+            this.router.navigate(['/inicio']);
           }
         }
       });
@@ -71,8 +71,8 @@ export class HomePage implements OnInit {
     }
  }
 
-  toogleChanged(event) {
-    
+  change() {
+    console.log(this.rol);
   }
   validarModelo(model: any)
   {
