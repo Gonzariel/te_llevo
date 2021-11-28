@@ -22,3 +22,31 @@ ion-title {
   text-align: center;
   padding: 5px;
 }
+
+ion-avatar {
+  margin: auto;
+}
+
+ion-button {
+  margin: 15px;
+}
+
+ion-card-title {
+  font-size: 20px;
+}
+
+ion-card-header {
+  font-size: 25px;
+}
+
+ion-card {
+  background-color: rgb(27, 27, 27);
+  --color: white;
+}
+
+h3 {
+  margin-bottom: auto;
+  text-align: left;
+  padding-left: 20px;
+  padding-top: 10px;
+}

@@ -29,9 +29,10 @@ export class InicioChoferPage implements OnInit {
 
 
   ngOnInit() {
-    Storage.get({ key: "usuario" }).then((val) => {
+    Storage.get({ key: "datos" }).then((val) => {
       var objeto = JSON.parse(val.value)
-      this.usuario = objeto.usser;
+      this.usuario = objeto.nombre + objeto.apellidos;
+      this.mensajeToast('Bienvenido ' + this.usuario);
     });
   }
 
@@ -46,7 +47,7 @@ export class InicioChoferPage implements OnInit {
         var result = JSON.stringify(res);
         var respuesta = JSON.parse(result);
         console.log(result);
-        console.log();
+        console.log(respuesta);
         this.mensajeToast("El viaje se ha registrado");
       });
     } else {
@@ -75,7 +76,8 @@ export class InicioChoferPage implements OnInit {
           text: 'Si',
           handler: () => {
             Storage.remove({key:'usuario'});
-            Storage.remove({key:'logeado'});
+            Storage.remove({ key: 'logeado' });
+            Storage.remove({key: 'datos'})
             this.router.navigate(['home']);
             //console.log('Confirm Okay');
           }

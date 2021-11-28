@@ -35,5 +35,9 @@ postCrearviaje(crearviaje) {
 getObtenerViajes(): Observable<any> {
   return this.http.get(this.apiBase + 'obtenerViajes/1000300130').pipe();
 }
+  
+postConfirmarReserva(reserva) {
+  return this.http.post(this.apiBase + 'enviarCorreoReserva', reserva).pipe();
+}  
 }
 

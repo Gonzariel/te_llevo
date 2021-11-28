@@ -16,6 +16,13 @@ import { HttpClient } from '@angular/common/http';
 export class InicioPage implements OnInit {
   viajes: any = [];
   usuario: '';
+  nombre: '';
+  correo: '';
+
+  token: any = {
+    tok: '1000300130'
+  };
+
   public info: any;
   public nuevo: any;
 
@@ -26,17 +33,36 @@ export class InicioPage implements OnInit {
 
 
   ngOnInit() {
-    Storage.get({ key: "usuario" }).then((val) => {
+    Storage.get({ key: "datos" }).then((val) => {
       var objeto = JSON.parse(val.value)
-      this.usuario = objeto.usser;
+      this.usuario = objeto.nombre + objeto.apellidos;
+      this.mensajeToast('Bienvenido ' + this.usuario);
     });
 
-    this.api.getObtenerViajes().subscribe((result) => {
-      console.log("result",result);
-      return this.viajes = result;
+  
+    this.api.getObtenerViajes().subscribe((respuesta) => {
+      console.log("result",respuesta.result);
+      return this.viajes = respuesta.result;
     });
+
+   
+    
   }
+  
+  reservaViaje() {
+    Storage.get({ key: "datos" }).then((val) => {
+      var objeto = JSON.parse(val.value)
+      this.usuario = objeto.nombre + objeto.apellidos;
+      var reserva={nombre:objeto.nombre,correo:objeto.correo,token_equipo:this.token.tok}
+      this.api.postConfirmarReserva(reserva).subscribe((res => {
+        console.log(res);
+        var result = JSON.stringify(res);
+        var respuesta = JSON.parse(result);
+        this.mensajeToast(respuesta.result);
+      }))
+    })
 
+  }
   //Inicio()
   //{
      //console.log('prueba')
@@ -58,7 +84,8 @@ export class InicioPage implements OnInit {
           text: 'Si',
           handler: () => {
             Storage.remove({key:'usuario'});
-            Storage.remove({key:'logeado'});
+            Storage.remove({ key: 'logeado' });
+            Storage.remove({key: 'datos'});
             this.router.navigate(['home']);
             //console.log('Confirm Okay');
           }
@@ -69,5 +96,15 @@ export class InicioPage implements OnInit {
     await alert.present();
   }
 
+   async mensajeToast(message:string, duration?:number)
+  {
+    const toast = await this.toastController.create(
+      {
+        message :message,
+        duration: duration?duration:3000
+      }
+    );
 
+    toast.present();
+  }
 }

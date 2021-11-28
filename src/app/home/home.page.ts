@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { ToastController} from '@ionic/angular';
 import {Storage} from '@capacitor/storage';
-import {ApiService} from '../servicios/api.service';
+import { ApiService } from '../servicios/api.service';
+
 
 @Component({
   selector: 'app-home',
@@ -43,22 +44,25 @@ export class HomePage implements OnInit {
       this.api.postLogin(login).subscribe((resultado) => {
         var result = JSON.stringify(resultado);
         var respuesta = JSON.parse(result);
-        console.log(result);
+        console.log(respuesta.result);
+        console.log(respuesta.result[0]);
         if (respuesta.result === 'Login incorrecto') {
           this.mensajeToast('Usuario o contraseña incorrecto');
         } else {
-          if(this.rol = !this.rol){
+          if (this.rol = !this.rol) {
+        
             var infoJson = JSON.stringify(this.usuario);
             Storage.set({ key: 'usuario', value: infoJson });
             Storage.set({ key: 'logeado', value: 'ok' });
+            Storage.set({ key: 'datos', value: JSON.stringify(respuesta.result[0]) });
             this.router.navigate(['/inicio']);
-            this.mensajeToast('Bienvenido ' + this.usuario.usser);
+            
           }else {
             var infoJson = JSON.stringify(this.usuario);
             Storage.set({ key: 'usuario', value: infoJson });
             Storage.set({ key: 'logeado', value: 'ok' });
+            Storage.set({ key: 'datos', value: JSON.stringify(respuesta.result[0]) });
             this.router.navigate(['/inicio-chofer']);
-            this.mensajeToast('Bienvenido ' + this.usuario.usser);
           }
         }
       });
@@ -67,6 +71,9 @@ export class HomePage implements OnInit {
     }
  }
 
+  toogleChanged(event) {
+    
+  }
   validarModelo(model: any)
   {
     for(var [key, value] of Object.entries(model))

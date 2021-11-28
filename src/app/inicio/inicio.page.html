@@ -54,24 +54,24 @@
             loadingSpinner="bubbles"
             loadingText="Cargando mas resultados..."
             ><ion-list>
-              <ion-list-header> Resultados </ion-list-header>
+              <ion-card-header> Resultados </ion-card-header>
               <ion-list>
-                <ion-item *ngFor="let item of viajes">
+                <ion-card *ngFor="let item of viajes">
                   <div id="container">
+                    <ion-card-header>
+                      <ion-card-title>Nombre Chofer</ion-card-title>
+                    </ion-card-header>
                     <ion-avatar>
                       <img
                         src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg"
                       />
                     </ion-avatar>
                   </div>
-                  <div>
-                    <h3>Choffer</h3>
-                  </div>
                   <div flex-direction="row">
-                    <h3>{{item.costo_por_persona}}</h3>
-                    <h3>{{item.horario_salida}}</h3>
-                    <h3>{{item.lugar_destino}}</h3>
-                    <ion-button>
+                    <h3>Valor por persona: {{item.costo_por_persona}}</h3>
+                    <h3>Hora de salida: {{item.horario_salida}}</h3>
+                    <h3>Lugar de destino: {{item.lugar_destino}}</h3>
+                    <ion-button (click)="reservaViaje()">
                       <ion-icon
                         slot="start"
                         name="person-add-outline"
@@ -79,7 +79,7 @@
                       Registrarse
                     </ion-button>
                   </div>
-                </ion-item>
+                </ion-card>
               </ion-list></ion-list
             >
           </ion-infinite-scroll-content>
