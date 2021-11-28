@@ -13,6 +13,7 @@ import {ApiService} from '../servicios/api.service';
 })
 export class InicioChoferPage implements OnInit {
   usuario = '';
+  apellido = '';
   viaje: any = {
     horario: '',
     costo: '',
@@ -31,8 +32,9 @@ export class InicioChoferPage implements OnInit {
   ngOnInit() {
     Storage.get({ key: "datos" }).then((val) => {
       var objeto = JSON.parse(val.value)
-      this.usuario = objeto.nombre + objeto.apellidos;
-      this.mensajeToast('Bienvenido ' + this.usuario);
+      this.usuario = objeto.nombre;
+      this.apellido=objeto.apellidos;
+      this.mensajeToast('Bienvenido ' + objeto.nombre+' '+objeto.apellidos);
     });
   }
 

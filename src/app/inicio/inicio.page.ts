@@ -18,6 +18,7 @@ export class InicioPage implements OnInit {
   usuario: '';
   nombre: '';
   correo: '';
+  apellido: '';
 
   token: any = {
     tok: '1000300130'
@@ -35,8 +36,9 @@ export class InicioPage implements OnInit {
   ngOnInit() {
     Storage.get({ key: "datos" }).then((val) => {
       var objeto = JSON.parse(val.value)
-      this.usuario = objeto.nombre + objeto.apellidos;
-      this.mensajeToast('Bienvenido ' + this.usuario);
+      this.usuario = objeto.nombre;
+      this.apellido=objeto.apellidos;
+      this.mensajeToast('Bienvenido ' + objeto.nombre+' '+objeto.apellidos);
     });
 
   
